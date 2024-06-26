@@ -17,7 +17,7 @@ function Calculator(){
         <CalculatorButton value= "1" onClick={getNumber}/>
         <CalculatorButton value= "2" onClick={getNumber}/>
         <CalculatorButton value= "3" onClick={getNumber}/>
-        <CalculatorButton value= 'div' onClick={getOperator}/>
+        <CalculatorButton value= "/" onClick={getOperator}/>
         
         <CalculatorButton value= "4" onClick={getNumber}/>
         <CalculatorButton value= "5" onClick={getNumber}/>
