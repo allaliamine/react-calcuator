@@ -1,19 +1,58 @@
+//function that creates the calculator
 function Calculator(){
   
-    function getNumber(number){
-    //   alert("value is : "+ number)
+    //using state hook to update values on screen
+    const [screen, newValue] = React.useState({
+        current_value: "0",
+        total: "0",
+        op:""
+    });
     
+    function getNumber(number){
+        //   alert("value is : "+ number)
+        let newNumber
+        if (screen.current_value === "0") {
+            // changing 0 to the first value
+            newNumber = number;
+        }else {
+            newNumber = screen.current_value + number;
+        }
+        newValue({ current_value : newNumber, total: screen.total});
     }
     
-    function getOperator(){
+    function getOperator(number) {
+        newValue()
       
+    }
+
+    function CalculateResult() {
+
+        let total = parseInt(screen.total);
+
+        switch(screen.op){
+            case "+":
+                total += parseInt(screen.current_value);
+            break;
+
+            case "-":
+                total -= parseInt(screen.current_value);
+            break;
+
+            case "*":
+                total *= parseInt(screen.current_value);
+            break;
+
+            case "/":
+                total /= parseInt(screen.current_value);
+            break;
+        }
     }
     
     
     return (
       <div className= "calculator">
         
-        <div className="screen">0</div>
+        <div className="screen">{screen.current_value}</div>
         
         <CalculatorButton value= "1" onClick={getNumber}/>
         <CalculatorButton value= "2" onClick={getNumber}/>
@@ -39,7 +78,7 @@ function Calculator(){
     )
 }
   
-  
+//function to create buttons and their values 
 function CalculatorButton(props){
     return (
       <button onClick={ () => props.onClick(props.value) } >{props.value}</button>
