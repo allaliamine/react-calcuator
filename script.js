@@ -1,7 +1,8 @@
 function Calculator(){
   
-    function getNumber(){
-      
+    function getNumber(number){
+    //   alert("value is : "+ number)
+    
     }
     
     function getOperator(){
@@ -41,7 +42,7 @@ function Calculator(){
   
 function CalculatorButton(props){
     return (
-      <button onClick={props.onClick}>{props.value}</button>
+      <button onClick={ () => props.onClick(props.value) } >{props.value}</button>
     )
 }
   
