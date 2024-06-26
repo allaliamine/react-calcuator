@@ -1,0 +1,33 @@
+.container{
+    width: 400px;
+    height: 200px;
+    background-color: grey;
+  }
+  
+  .calculator{
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+  }
+  
+  button{
+    width:100px;
+    height: 50px;
+    border: 1px solid lightgrey;
+  }
+  
+  button:hover{
+    background-color: lightgrey;
+  }
+  
+  .screen{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    
+    border: 2px solid black;
+    background-color: white;
+    text-align: right;
+    font-size: 30px;
+    padding-top: 5px;
+    padding-right: 5px;
+    height: 40px;
+  }
