@@ -19,19 +19,21 @@ function Calculator(){
             newNumber = screen.current_value + number;
         }
 
-        newValue({ current_value : newNumber, total: screen.total, isFirst: false});
+        newValue({ current_value : newNumber, total: screen.total, isFirst: false, op: screen.op});
     }
     
     function getOperator(number) {
         const total = CalculateResult();
 
 
-        newValue({current_value: total.toString, total: total.toString, isFirst: true, op: number});
+        newValue({current_value: total.toString(), total: total.toString(), isFirst: true, op: number});
     }
 
     function CalculateResult() {
 
         let total = parseInt(screen.total);
+
+        // console.log(screen);
 
         switch(screen.op){
             case "+":
@@ -68,12 +70,6 @@ function Calculator(){
     }
 
 
-    function equals(){
-        let total = CalculateResult();
-
-        newValue({current_value: total.toString, total: total.toString, isFirst: true, op: "="});
-    }
-    
     return (
       <div className= "calculator">
         
@@ -96,7 +92,7 @@ function Calculator(){
         
         <CalculatorButton value= "C" onClick={clearAll}/>
         <CalculatorButton value= "0" onClick={getNumber}/>
-        <CalculatorButton value= "=" onClick={equals}/>
+        <CalculatorButton value= "=" onClick={getOperator}/>
         <CalculatorButton value= "+" onClick={getOperator}/>
         
       </div>
