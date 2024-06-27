@@ -5,24 +5,28 @@ function Calculator(){
     const [screen, newValue] = React.useState({
         current_value: "0",
         total: "0",
+        isFirst: true,
         op:""
     });
     
     function getNumber(number){
-        //   alert("value is : "+ number)
+
         let newNumber
-        if (screen.current_value === "0") {
-            // changing 0 to the first value
+
+        if (screen.isFirst) {
             newNumber = number;
         }else {
             newNumber = screen.current_value + number;
         }
-        newValue({ current_value : newNumber, total: screen.total});
+
+        newValue({ current_value : newNumber, total: screen.total, isFirst: false});
     }
     
     function getOperator(number) {
-        newValue()
-      
+        const total = CalculateResult();
+
+
+        newValue({current_value: total.toString, total: total.toString, isFirst: true, op: number});
     }
 
     function CalculateResult() {
@@ -45,9 +49,30 @@ function Calculator(){
             case "/":
                 total /= parseInt(screen.current_value);
             break;
+
+            default :
+            total = parseInt(screen.current_value);
         }
+
+        return total;
     }
     
+
+    function clearAll(){
+        newValue({
+            current_value: "0",
+            total: "0",
+            isFirst: true,
+            op:""
+        });
+    }
+
+
+    function equals(){
+        let total = CalculateResult();
+
+        newValue({current_value: total.toString, total: total.toString, isFirst: true, op: "="});
+    }
     
     return (
       <div className= "calculator">
@@ -69,9 +94,9 @@ function Calculator(){
         <CalculatorButton value= "9" onClick={getNumber}/>
         <CalculatorButton value= "-" onClick={getOperator}/>
         
-        <CalculatorButton value= "C" onClick={getOperator}/>
+        <CalculatorButton value= "C" onClick={clearAll}/>
         <CalculatorButton value= "0" onClick={getNumber}/>
-        <CalculatorButton value= "=" onClick={getOperator}/>
+        <CalculatorButton value= "=" onClick={equals}/>
         <CalculatorButton value= "+" onClick={getOperator}/>
         
       </div>
