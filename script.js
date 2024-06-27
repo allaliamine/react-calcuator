@@ -31,29 +31,29 @@ function Calculator(){
 
     function CalculateResult() {
 
-        let total = parseInt(screen.total);
+        let total = parseFloat(screen.total);
 
         // console.log(screen);
 
         switch(screen.op){
             case "+":
-                total += parseInt(screen.current_value);
+                total += parseFloat(screen.current_value);
             break;
 
             case "-":
-                total -= parseInt(screen.current_value);
+                total -= parseFloat(screen.current_value);
             break;
 
             case "*":
-                total *= parseInt(screen.current_value);
+                total *= parseFloat(screen.current_value);
             break;
 
             case "/":
-                total /= parseInt(screen.current_value);
+                total /= parseFloat(screen.current_value);
             break;
 
             default :
-            total = parseInt(screen.current_value);
+            total = parseFloat(screen.current_value);
         }
 
         return total;
